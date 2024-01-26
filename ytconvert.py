@@ -19,28 +19,17 @@ def download_video(url):
     new_file = base + ".mp4"
     os.rename(out_file, new_file)
 
-def download_both(url):
-    print("Downloading both...")
-    yt = YouTube(url=url)
-    both = yt.streams.filter(only_audio=False, only_video=False).first()
-    out_file = both.download()
-    base, _ = os.path.splitext(out_file)
-    new_file = base + ".mp4"
-    os.rename(out_file, new_file)
-
-print("1. MP3 | 2. MP4 | 3. BOTH")
+print("1. MP3 | 2. MP4")
 choose = input()
 
-if choose in ["1", "2", "3"]:
+if choose in ["1", "2"]:
     url = input("URL: ")
     
     if choose == "1":
         download_audio(url)
     elif choose == "2":
         download_video(url)
-    elif choose == "3":
-        download_both(url)
     
     print("Successfully downloaded!")
 else:
-    print("Invalid choice. Please enter 1, 2, or 3.")
+    print("Invalid choice. Please enter 1 or 2.")
